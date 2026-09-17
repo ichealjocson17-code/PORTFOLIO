@@ -1,0 +1,5 @@
+1. Extract the entire ICHEAL_JOCSON_PORTFOLIO_WORKING.zip file first.
+2. Open the extracted ICHEAL_JOCSON_PORTFOLIO_WORKING folder.
+3. Double-click index.html.
+
+Do NOT open index.html directly inside WinRAR because linked folders/images may not load.
