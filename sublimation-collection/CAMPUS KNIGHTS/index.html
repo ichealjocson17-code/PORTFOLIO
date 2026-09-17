@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAMPUS KNIGHTS — Sublimation Collection</title>
+<style>
+:root{--bg:#07090f;--text:#f5f7fb;--muted:#98a4b7;--cyan:#54d7ff}
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(84,215,255,.10),transparent 24%),
+    radial-gradient(circle at 82% 10%,rgba(141,107,255,.10),transparent 25%),
+    var(--bg);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:34px 34px;
+}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1240px,calc(100% - 32px));margin:0 auto;padding:28px 0 70px}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:32px}
+.back{
+  padding:10px 14px;border:1px solid rgba(255,255,255,.10);border-radius:12px;
+  background:rgba(255,255,255,.035);font-size:13px;color:#c9d2df
+}
+.meta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero{padding:28px 0 34px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:28px}
+.kicker{font-size:11px;color:var(--cyan);letter-spacing:.18em;text-transform:uppercase}
+h1{font-size:clamp(48px,8vw,96px);line-height:.88;letter-spacing:-.07em;margin:12px 0 12px}
+.lead{color:#98a4b7;line-height:1.7;max-width:680px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:start;grid-auto-rows:8px}
+.photo-card{
+  align-self:start;
+  border:1px solid rgba(255,255,255,.09);border-radius:17px;overflow:hidden;
+  background:rgba(255,255,255,.02);transition:.2s ease
+}
+.photo-card>a{display:block}
+.photo-card:hover{transform:translateY(-4px);border-color:#4a566b}
+.image-wrap{position:relative;background:#0d1119;overflow:hidden}
+.image-wrap img{display:block;width:100%;height:auto}
+
+.caption{display:flex;justify-content:space-between;gap:15px;padding:14px 16px}
+.caption strong{font-size:14px}
+.caption span{font-size:10px;color:#7f8a9a;letter-spacing:.13em;text-transform:uppercase}
+.footer{padding-top:36px;text-align:center;color:#667286;font-size:11px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+
+/* === ICHEAL PORTFOLIO MOTION UI v1 === */
+:root{--fx-cyan:#54d7ff;--fx-violet:#8d6bff;--fx-pink:#ff67c8}
+body{position:relative;isolation:isolate}
+body>*:not(.ambient-art-stage):not(.ui-click-spark){position:relative;z-index:1}
+.ambient-art-stage{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.72}
+.ambient-orb{position:absolute;border-radius:999px;filter:blur(34px);mix-blend-mode:screen;will-change:transform}
+.ambient-orb.a{width:260px;height:260px;left:-60px;top:12%;background:radial-gradient(circle,rgba(84,215,255,.28),transparent 68%);animation:fxA 14s ease-in-out infinite alternate}
+.ambient-orb.b{width:340px;height:340px;right:-90px;top:24%;background:radial-gradient(circle,rgba(141,107,255,.24),transparent 70%);animation:fxB 18s ease-in-out infinite alternate}
+.ambient-orb.c{width:280px;height:280px;left:36%;bottom:-110px;background:radial-gradient(circle,rgba(255,103,200,.16),transparent 70%);animation:fxC 20s ease-in-out infinite alternate}
+.ambient-ring{position:absolute;width:220px;height:220px;right:13%;top:8%;border:1px solid rgba(84,215,255,.16);border-radius:32% 68% 61% 39%/38% 44% 56% 62%;box-shadow:0 0 42px rgba(84,215,255,.08),inset 0 0 28px rgba(141,107,255,.05);animation:fxSpin 22s linear infinite}
+.ambient-ring:after{content:"";position:absolute;inset:24px;border:1px dashed rgba(141,107,255,.16);border-radius:48% 52% 35% 65%/52% 42% 58% 48%}
+.ambient-line{position:absolute;width:42vw;min-width:260px;height:1px;left:8%;top:58%;background:linear-gradient(90deg,transparent,rgba(84,215,255,.22),rgba(141,107,255,.18),transparent);transform:rotate(-8deg);animation:fxLine 8s ease-in-out infinite alternate}
+.project,.folder,.photo-card,.skill-panel,.about-panel,.contact-panel,.artboard,.hero-id{position:relative;isolation:isolate}
+.project:after,.folder:after,.photo-card:after,.skill-panel:after,.about-panel:after,.contact-panel:after,.hero-id:after{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;background:linear-gradient(120deg,transparent,rgba(84,215,255,.18),rgba(141,107,255,.18),rgba(255,103,200,.10),transparent);opacity:0;z-index:-1;filter:blur(12px);transition:opacity .3s ease}
+.project:hover:after,.folder:hover:after,.photo-card:hover:after,.skill-panel:hover:after,.about-panel:hover:after,.contact-panel:hover:after,.hero-id:hover:after{opacity:.9}
+.project-art:before,.preview:after,.image-wrap:after{content:"";position:absolute;inset:-45%;pointer-events:none;background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.02) 44%,rgba(84,215,255,.10) 49%,rgba(255,255,255,.04) 52%,transparent 59%);transform:translateX(-56%) rotate(8deg);animation:fxSheen 8s ease-in-out infinite}
+.ui-glow-target{cursor:pointer;transition:color .2s ease,text-shadow .25s ease,filter .25s ease,transform .2s ease}
+.ui-glow-target:hover{text-shadow:0 0 10px rgba(84,215,255,.22),0 0 24px rgba(141,107,255,.15)}
+.ui-glow-target.ui-click-glow{animation:fxText .75s cubic-bezier(.22,.78,.26,1)}
+.ui-click-spark{position:fixed;width:16px;height:16px;border-radius:50%;z-index:9999;pointer-events:none;transform:translate(-50%,-50%);background:#fff;box-shadow:0 0 10px rgba(255,255,255,.95),0 0 24px rgba(84,215,255,.95),0 0 52px rgba(141,107,255,.75);animation:fxSpark .65s ease-out forwards}
+.ui-click-spark:before,.ui-click-spark:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:linear-gradient(90deg,transparent,#fff,transparent);opacity:.9}
+.ui-click-spark:before{width:72px;height:1px}.ui-click-spark:after{width:1px;height:72px}
+a:active,button:active,.project:active,.folder:active,.photo-card:active{filter:brightness(1.12) drop-shadow(0 0 12px rgba(84,215,255,.24))}
+h1,h2{position:relative}h1:after,h2:after{content:"";display:block;width:72px;height:2px;margin-top:14px;border-radius:999px;background:linear-gradient(90deg,var(--fx-cyan),var(--fx-violet),var(--fx-pink));box-shadow:0 0 18px rgba(84,215,255,.28);transform-origin:left center;animation:fxAccent 3.8s ease-in-out infinite}
+@keyframes fxA{to{transform:translate3d(90px,50px,0) scale(1.12)}}@keyframes fxB{to{transform:translate3d(-120px,80px,0) scale(.88)}}@keyframes fxC{to{transform:translate3d(90px,-85px,0) scale(1.16)}}@keyframes fxSpin{to{transform:rotate(360deg)}}@keyframes fxLine{to{transform:translateX(32%) rotate(-8deg);opacity:.8}}@keyframes fxSheen{0%,22%{transform:translateX(-58%) rotate(8deg);opacity:0}45%{opacity:.8}72%,100%{transform:translateX(62%) rotate(8deg);opacity:0}}@keyframes fxText{36%{transform:scale(1.025);color:#fff;text-shadow:0 0 8px #fff,0 0 18px rgba(84,215,255,.95),0 0 38px rgba(141,107,255,.68),0 0 62px rgba(255,103,200,.32)}}@keyframes fxSpark{to{opacity:0;transform:translate(-50%,-50%) scale(2.5) rotate(45deg)}}@keyframes fxAccent{50%{transform:scaleX(1.45);filter:brightness(1.35)}}
+@media(max-width:700px){.ambient-orb{filter:blur(42px);opacity:.7}.ambient-ring{width:150px;height:150px;right:-30px}.ambient-line{width:90vw;left:-10%}}
+@media(prefers-reduced-motion:reduce){.ambient-orb,.ambient-ring,.ambient-line,.project-art:before,.preview:after,.image-wrap:after,h1:after,h2:after,.ui-glow-target.ui-click-glow{animation:none!important}}
+
+
+
+/* === Electric image cards / gallery glow === */
+.folder,.photo-card,.design-card{position:relative;isolation:isolate}
+.folder::before,.photo-card::before,.design-card::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04),0 0 0 rgba(84,215,255,0),0 0 0 rgba(141,107,255,0);
+  transition:box-shadow .28s ease,opacity .28s ease,border-color .28s ease;opacity:.9;z-index:0
+}
+.folder:hover::before,.photo-card:hover::before,.design-card:hover::before,
+.folder.is-zapping::before,.photo-card.is-zapping::before,.design-card.is-zapping::before{
+  box-shadow:0 0 0 1px rgba(126,223,255,.20),0 0 24px rgba(84,215,255,.18),0 0 42px rgba(141,107,255,.12)
+}
+.preview,.image-wrap{position:relative;overflow:hidden;background:#0b111c;isolation:isolate}
+.preview img,.image-wrap img{
+  display:block;width:100%;height:auto;transition:transform .42s cubic-bezier(.2,.8,.2,1),filter .42s ease;
+  will-change:transform,filter
+}
+.folder:hover .preview img,.photo-card:hover .image-wrap img,.design-card:hover .image-wrap img,
+.folder.is-zapping .preview img,.photo-card.is-zapping .image-wrap img,.design-card.is-zapping .image-wrap img{
+  transform:scale(1.04);filter:brightness(.9) saturate(1.07) contrast(1.03)
+}
+.preview::before,.image-wrap::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(84,215,255,.10), transparent 24%),
+    radial-gradient(circle at 82% 14%, rgba(141,107,255,.10), transparent 24%),
+    linear-gradient(180deg, rgba(5,10,18,.04), rgba(5,10,18,.12) 42%, rgba(5,10,18,.34) 100%)
+}
+.electric-burst{
+  position:absolute;inset:14%;z-index:2;border-radius:22px;pointer-events:none;
+  background:radial-gradient(circle,rgba(84,215,255,.18),transparent 55%),radial-gradient(circle at 68% 38%,rgba(141,107,255,.16),transparent 46%);
+  filter:blur(12px);opacity:0;transform:scale(.88);transition:opacity .26s ease, transform .34s ease
+}
+.folder:hover .electric-burst,.photo-card:hover .electric-burst,.design-card:hover .electric-burst{opacity:.7;transform:scale(1)}
+.folder.is-zapping .electric-burst,.photo-card.is-zapping .electric-burst,.design-card.is-zapping .electric-burst{opacity:1;transform:scale(1.12)}
+.electric-veil{
+  position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.82
+}
+.electric-veil .bolt{
+  fill:none;stroke:rgba(135,231,255,.94);stroke-width:1.2;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:14 120;
+  filter:drop-shadow(0 0 4px rgba(84,215,255,.95)) drop-shadow(0 0 10px rgba(141,107,255,.64));
+  animation:electricTravel 3.6s linear infinite,electricFlicker 1.9s steps(2,end) infinite
+}
+.electric-veil .bolt.b{stroke:rgba(198,180,255,.92);stroke-dasharray:10 128;animation-delay:-1.5s,-.5s}
+.folder:nth-child(2n) .electric-veil .bolt,.photo-card:nth-child(2n) .electric-veil .bolt,.design-card:nth-child(2n) .electric-veil .bolt{animation-delay:-.8s,-.2s}
+.folder:nth-child(2n) .electric-veil .bolt.b,.photo-card:nth-child(2n) .electric-veil .bolt.b,.design-card:nth-child(2n) .electric-veil .bolt.b{animation-delay:-2.3s,-.9s}
+.folder.is-zapping,.photo-card.is-zapping,.design-card.is-zapping{
+  animation:cardZap .44s ease both;
+  box-shadow:0 24px 64px rgba(0,0,0,.36),0 0 24px rgba(84,215,255,.26),0 0 48px rgba(141,107,255,.16)
+}
+.zap-particle{
+  position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;pointer-events:none;z-index:8;
+  box-shadow:0 0 10px #fff,0 0 18px rgba(84,215,255,.92),0 0 34px rgba(141,107,255,.66);
+  animation:zapParticle .7s ease-out forwards
+}
+@keyframes electricTravel{to{stroke-dashoffset:-134}}
+@keyframes electricFlicker{0%,100%{opacity:.35}12%{opacity:1}18%{opacity:.45}45%{opacity:.88}52%{opacity:.3}82%{opacity:.95}}
+@keyframes cardZap{0%{transform:translateY(0) translateX(0)}18%{transform:translateY(-1px) translateX(-2px)}36%{transform:translateY(-2px) translateX(2px)}54%{transform:translateY(-3px) translateX(-2px)}72%{transform:translateY(-2px) translateX(2px)}100%{transform:translateY(-4px) scale(1.005)}}
+@keyframes zapParticle{to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(2.2)}}
+@media(prefers-reduced-motion:reduce){
+  .folder.is-zapping,.photo-card.is-zapping,.design-card.is-zapping,.electric-veil .bolt,.zap-particle{animation:none!important}
+  .folder:hover .preview img,.photo-card:hover .image-wrap img,.design-card:hover .image-wrap img,.folder.is-zapping .preview img,.photo-card.is-zapping .image-wrap img,.design-card.is-zapping .image-wrap img{transform:none}
+}
+
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Sublimation Collection</a>
+    <div class="meta">Folder / CAMPUS KNIGHTS</div>
+  </div>
+
+  <section class="hero">
+    <div class="kicker">Sublimation Collection / Folder</div>
+    <h1>CAMPUS KNIGHTS</h1>
+    <p class="lead">Basketball sublimation presentation arranged from 01 to 05. Click any image to open the original full-resolution artwork.</p>
+  </section>
+
+  <section class="grid">
+    
+    <article class="photo-card">
+      <a href="01.jpg" target="_blank" rel="noopener">
+        <div class="image-wrap">
+          <img src="preview-01.jpg" alt="CAMPUS KNIGHTS 01 — Cover" loading="lazy">
+          
+        </div>
+        <div class="caption">
+          <strong>Cover</strong>
+          <span>CAMPUS KNIGHTS</span>
+        </div>
+      </a>
+    </article>
+    
+    <article class="photo-card">
+      <a href="02.jpg" target="_blank" rel="noopener">
+        <div class="image-wrap">
+          <img src="preview-02.jpg" alt="CAMPUS KNIGHTS 02 — Layout Commission Banner" loading="lazy">
+          
+        </div>
+        <div class="caption">
+          <strong>Layout Commission Banner</strong>
+          <span>CAMPUS KNIGHTS</span>
+        </div>
+      </a>
+    </article>
+    
+    <article class="photo-card">
+      <a href="03.jpg" target="_blank" rel="noopener">
+        <div class="image-wrap">
+          <img src="preview-03.jpg" alt="CAMPUS KNIGHTS 03 — Model Preview" loading="lazy">
+          
+        </div>
+        <div class="caption">
+          <strong>Model Preview</strong>
+          <span>CAMPUS KNIGHTS</span>
+        </div>
+      </a>
+    </article>
+    
+    <article class="photo-card">
+      <a href="04.jpg" target="_blank" rel="noopener">
+        <div class="image-wrap">
+          <img src="preview-04.jpg" alt="CAMPUS KNIGHTS 04 — Full Collection Preview" loading="lazy">
+          
+        </div>
+        <div class="caption">
+          <strong>Full Collection Preview</strong>
+          <span>CAMPUS KNIGHTS</span>
+        </div>
+      </a>
+    </article>
+    
+    <article class="photo-card">
+      <a href="05.jpg" target="_blank" rel="noopener">
+        <div class="image-wrap">
+          <img src="preview-05.jpg" alt="CAMPUS KNIGHTS 05 — Thank You" loading="lazy">
+          
+        </div>
+        <div class="caption">
+          <strong>Thank You</strong>
+          <span>CAMPUS KNIGHTS</span>
+        </div>
+      </a>
+    </article>
+    
+  </section>
+
+  <div class="footer">ICHEAL JOCSON • GRAPHIC DESIGN PORTFOLIO</div>
+</main>
+
+<script id="icheal-motion-ui">
+(()=>{if(window.__ichealMotionUiReady)return;window.__ichealMotionUiReady=true;const reduced=matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;const stage=document.createElement('div');stage.className='ambient-art-stage';stage.setAttribute('aria-hidden','true');stage.innerHTML='<span class="ambient-orb a"></span><span class="ambient-orb b"></span><span class="ambient-orb c"></span><span class="ambient-ring"></span><span class="ambient-line"></span>';document.body.prepend(stage);const sel='h1,h2,.brand,.project-title,.kicker,.info strong,.caption strong,.hero-id-text strong,.navlinks a,.back,.btn';document.querySelectorAll(sel).forEach(e=>e.classList.add('ui-glow-target'));document.addEventListener('click',e=>{const t=e.target.closest(sel);if(!t)return;t.classList.remove('ui-click-glow');void t.offsetWidth;t.classList.add('ui-click-glow');setTimeout(()=>t.classList.remove('ui-click-glow'),820);if(reduced)return;const s=document.createElement('span');s.className='ui-click-spark';s.setAttribute('aria-hidden','true');s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';document.body.appendChild(s);s.addEventListener('animationend',()=>s.remove(),{once:true})})})();
+</script>
+
+
+<script>
+function initMasonry(){const grid=document.querySelector('.grid');if(!grid)return;function layout(){const cs=getComputedStyle(grid);const row=parseFloat(cs.getPropertyValue('grid-auto-rows'))||8;const gap=parseFloat(cs.rowGap||cs.gap)||20;grid.querySelectorAll('.photo-card').forEach(c=>c.style.gridRowEnd='auto');requestAnimationFrame(()=>{grid.querySelectorAll('.photo-card:not(.hidden)').forEach(c=>{const h=c.getBoundingClientRect().height;c.style.gridRowEnd='span '+Math.ceil((h+gap)/(row+gap));});});}window.addEventListener('resize',layout);window.addEventListener('load',layout);document.querySelectorAll('img').forEach(i=>i.addEventListener('load',layout));window.relayoutPortfolioGrid=layout;layout();}initMasonry();
+</script>
+
+<script id="icheal-electric-cards">
+(()=>{
+  if(window.__ichealElectricCardsReady) return;
+  window.__ichealElectricCardsReady = true;
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mediaSelector = '.preview, .image-wrap';
+  const cardSelector = '.folder, .photo-card, .design-card';
+
+  document.querySelectorAll(mediaSelector).forEach((wrap) => {
+    if (wrap.querySelector('.electric-veil')) return;
+    const burst = document.createElement('div');
+    burst.className = 'electric-burst';
+    burst.setAttribute('aria-hidden','true');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'electric-veil');
+    svg.setAttribute('viewBox', '0 0 100 100');
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.innerHTML = '<polyline class="bolt a" points="2,13 12,8 20,15 31,6 42,14 54,7 65,13 77,5 88,12 98,7"></polyline><polyline class="bolt b" points="98,83 88,91 78,84 67,94 56,85 45,93 34,84 22,92 12,85 2,93"></polyline>';
+    wrap.appendChild(burst);
+    wrap.appendChild(svg);
+  });
+
+  function sparkBurst(card, x, y){
+    const count = 8;
+    for(let i = 0; i < count; i++){
+      const p = document.createElement('span');
+      p.className = 'zap-particle';
+      const angle = (Math.PI * 2 * i) / count;
+      const distance = 18 + Math.random() * 26;
+      p.style.left = x + 'px';
+      p.style.top = y + 'px';
+      p.style.setProperty('--dx', (Math.cos(angle) * distance) + 'px');
+      p.style.setProperty('--dy', (Math.sin(angle) * distance) + 'px');
+      card.appendChild(p);
+      setTimeout(() => p.remove(), 720);
+    }
+  }
+
+  document.querySelectorAll('a.folder, .photo-card > a, .design-card > a').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const card = link.closest(cardSelector);
+      if(!card) return;
+      card.classList.remove('is-zapping');
+      void card.offsetWidth;
+      card.classList.add('is-zapping');
+      if(navigator.vibrate) navigator.vibrate(28);
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX || (rect.left + rect.width / 2)) - rect.left;
+      const y = (event.clientY || (rect.top + rect.height / 2)) - rect.top;
+      if(!reduced) sparkBurst(card, x, y);
+      setTimeout(() => card.classList.remove('is-zapping'), 460);
+
+      const href = link.getAttribute('href');
+      const target = (link.getAttribute('target') || '').toLowerCase();
+      const modified = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+      if(target === '_blank' || modified) return;
+      if(event.button && event.button !== 0) return;
+      event.preventDefault();
+      setTimeout(() => { window.location.href = href; }, 210);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

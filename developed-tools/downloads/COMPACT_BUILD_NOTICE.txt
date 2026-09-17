@@ -1,0 +1,11 @@
+AI IMAGE TRACER — COMPACT PORTFOLIO DOWNLOAD NOTICE
+
+This portfolio was optimized to stay under 10 MB.
+The large app files are not embedded in this compact ZIP:
+
+- AI_Tracer_Lab_Setup.exe (~74 MB)
+- IMAGE_TRACER_FULL_PACKAGE.rar (~60.6 MB)
+
+The app remains free. When publishing the portfolio, host those two files separately (for example on your own download host) and point the download buttons to those hosted files.
+
+The setup guide and checksum remain included in the compact portfolio.

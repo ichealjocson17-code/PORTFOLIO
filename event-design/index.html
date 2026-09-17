@@ -1,0 +1,153 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Event Design — Icheal Jocson</title><style>
+:root{--bg:#090d14;--panel:#101722;--line:rgba(255,255,255,.10);--text:#f4f7fb;--cyan:#70dcff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 18% 0%,#10284b 0,transparent 30%),radial-gradient(circle at 86% 5%,#29145b 0,transparent 25%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1480px,92vw);margin:auto;padding:30px 0 70px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:54px}.back{font-size:13px;color:#c6d1df;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}.back:hover{border-color:#52708e}.meta{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8090a6}.hero{max-width:920px;margin-bottom:38px}.kicker{font-size:11px;color:var(--cyan);letter-spacing:.18em;text-transform:uppercase}h1{font-size:clamp(44px,8vw,96px);letter-spacing:-.065em;line-height:.9;margin:10px 0 18px}.lead{max-width:720px;color:#9ba8ba;line-height:1.75;font-size:15px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:8px;gap:18px;align-items:start}.design-card{min-width:0;align-self:start;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:rgba(16,23,34,.82);transition:.25s ease}.design-card:hover{transform:translateY(-4px);border-color:#415b78}.image-wrap{position:relative;overflow:hidden;background:transparent}.image-wrap img{width:100%;height:auto;display:block}.caption{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 15px}.caption strong{font-size:14px}.caption span{font-size:11px;color:#7f8da1;letter-spacing:.1em}.footer{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);font-size:11px;color:#69778a;letter-spacing:.13em;text-transform:uppercase;text-align:center}@media(max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.wrap{width:min(94vw,100%)}.top{align-items:flex-start;flex-direction:column;margin-bottom:38px}.meta{line-height:1.5}.grid{grid-template-columns:1fr;gap:14px}h1{font-size:52px}}
+
+
+/* === Electric image cards / gallery glow === */
+.folder,.photo-card,.design-card{position:relative;isolation:isolate}
+.folder::before,.photo-card::before,.design-card::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04),0 0 0 rgba(84,215,255,0),0 0 0 rgba(141,107,255,0);
+  transition:box-shadow .28s ease,opacity .28s ease,border-color .28s ease;opacity:.9;z-index:0
+}
+.folder:hover::before,.photo-card:hover::before,.design-card:hover::before,
+.folder.is-zapping::before,.photo-card.is-zapping::before,.design-card.is-zapping::before{
+  box-shadow:0 0 0 1px rgba(126,223,255,.20),0 0 24px rgba(84,215,255,.18),0 0 42px rgba(141,107,255,.12)
+}
+.preview,.image-wrap{position:relative;overflow:hidden;background:#0b111c;isolation:isolate}
+.preview img,.image-wrap img{
+  display:block;width:100%;height:auto;transition:transform .42s cubic-bezier(.2,.8,.2,1),filter .42s ease;
+  will-change:transform,filter
+}
+.folder:hover .preview img,.photo-card:hover .image-wrap img,.design-card:hover .image-wrap img,
+.folder.is-zapping .preview img,.photo-card.is-zapping .image-wrap img,.design-card.is-zapping .image-wrap img{
+  transform:scale(1.04);filter:brightness(.9) saturate(1.07) contrast(1.03)
+}
+.preview::before,.image-wrap::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(84,215,255,.10), transparent 24%),
+    radial-gradient(circle at 82% 14%, rgba(141,107,255,.10), transparent 24%),
+    linear-gradient(180deg, rgba(5,10,18,.04), rgba(5,10,18,.12) 42%, rgba(5,10,18,.34) 100%)
+}
+.electric-burst{
+  position:absolute;inset:14%;z-index:2;border-radius:22px;pointer-events:none;
+  background:radial-gradient(circle,rgba(84,215,255,.18),transparent 55%),radial-gradient(circle at 68% 38%,rgba(141,107,255,.16),transparent 46%);
+  filter:blur(12px);opacity:0;transform:scale(.88);transition:opacity .26s ease, transform .34s ease
+}
+.folder:hover .electric-burst,.photo-card:hover .electric-burst,.design-card:hover .electric-burst{opacity:.7;transform:scale(1)}
+.folder.is-zapping .electric-burst,.photo-card.is-zapping .electric-burst,.design-card.is-zapping .electric-burst{opacity:1;transform:scale(1.12)}
+.electric-veil{
+  position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.82
+}
+.electric-veil .bolt{
+  fill:none;stroke:rgba(135,231,255,.94);stroke-width:1.2;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:14 120;
+  filter:drop-shadow(0 0 4px rgba(84,215,255,.95)) drop-shadow(0 0 10px rgba(141,107,255,.64));
+  animation:electricTravel 3.6s linear infinite,electricFlicker 1.9s steps(2,end) infinite
+}
+.electric-veil .bolt.b{stroke:rgba(198,180,255,.92);stroke-dasharray:10 128;animation-delay:-1.5s,-.5s}
+.folder:nth-child(2n) .electric-veil .bolt,.photo-card:nth-child(2n) .electric-veil .bolt,.design-card:nth-child(2n) .electric-veil .bolt{animation-delay:-.8s,-.2s}
+.folder:nth-child(2n) .electric-veil .bolt.b,.photo-card:nth-child(2n) .electric-veil .bolt.b,.design-card:nth-child(2n) .electric-veil .bolt.b{animation-delay:-2.3s,-.9s}
+.folder.is-zapping,.photo-card.is-zapping,.design-card.is-zapping{
+  animation:cardZap .44s ease both;
+  box-shadow:0 24px 64px rgba(0,0,0,.36),0 0 24px rgba(84,215,255,.26),0 0 48px rgba(141,107,255,.16)
+}
+.zap-particle{
+  position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;pointer-events:none;z-index:8;
+  box-shadow:0 0 10px #fff,0 0 18px rgba(84,215,255,.92),0 0 34px rgba(141,107,255,.66);
+  animation:zapParticle .7s ease-out forwards
+}
+@keyframes electricTravel{to{stroke-dashoffset:-134}}
+@keyframes electricFlicker{0%,100%{opacity:.35}12%{opacity:1}18%{opacity:.45}45%{opacity:.88}52%{opacity:.3}82%{opacity:.95}}
+@keyframes cardZap{0%{transform:translateY(0) translateX(0)}18%{transform:translateY(-1px) translateX(-2px)}36%{transform:translateY(-2px) translateX(2px)}54%{transform:translateY(-3px) translateX(-2px)}72%{transform:translateY(-2px) translateX(2px)}100%{transform:translateY(-4px) scale(1.005)}}
+@keyframes zapParticle{to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(2.2)}}
+@media(prefers-reduced-motion:reduce){
+  .folder.is-zapping,.photo-card.is-zapping,.design-card.is-zapping,.electric-veil .bolt,.zap-particle{animation:none!important}
+  .folder:hover .preview img,.photo-card:hover .image-wrap img,.design-card:hover .image-wrap img,.folder.is-zapping .preview img,.photo-card.is-zapping .image-wrap img,.design-card.is-zapping .image-wrap img{transform:none}
+}
+
+</style></head><body><main class="wrap"><div class="top"><a class="back" href="../index.html#work">← Back to Portfolio</a><div class="meta">EVENT DESIGN / 21 PROJECTS</div></div><section class="hero"><div class="kicker">Portfolio / Event Design</div><h1>EVENT DESIGN</h1><p class="lead">A curated collection of tarpaulin and event-layout projects, arranged for clean and easy browsing.</p></section><section class="grid"><article class="design-card"><a href="01-design-11.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="01-design-11.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="02-design-12.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="02-design-12.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="03-design-18.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="03-design-18.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="04-design-20.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="04-design-20.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="05-design-22.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="05-design-22.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="06-design-26.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="06-design-26.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="07-design-36.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="07-design-36.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="08-design-40.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="08-design-40.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="09-design-44.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="09-design-44.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="10-design-45.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="10-design-45.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="11-design-46.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="11-design-46.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="12-design-48.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="12-design-48.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="13-design-50.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="13-design-50.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="14-design-51.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="14-design-51.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="15-design-52.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="15-design-52.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="16-design-53.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="16-design-53.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="17-design-59.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="17-design-59.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="18-design-60.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="18-design-60.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="19-design-76.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="19-design-76.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="20-design-78.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="20-design-78.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article><article class="design-card"><a href="21-design-79.webp" target="_blank" rel="noopener"><div class="image-wrap"><img src="21-design-79.webp" alt="Event Design project" loading="lazy"></div><div class="caption"><strong>Event Design</strong></div></a></article></section><div class="footer">ICHEAL JOCSON • GRAPHIC DESIGN PORTFOLIO</div></main><script>
+const gallery=document.querySelector('.grid');
+const cards=[...document.querySelectorAll('.design-card')];
+function fitCard(card){
+  const style=getComputedStyle(gallery);
+  const row=parseFloat(style.gridAutoRows)||8;
+  const gap=parseFloat(style.rowGap)||18;
+  const content=card.querySelector('a');
+  const h=content.getBoundingClientRect().height;
+  card.style.gridRowEnd=`span ${Math.ceil((h+gap)/(row+gap))}`;
+}
+function fitGallery(){cards.forEach(fitCard)}
+document.querySelectorAll('.image-wrap img').forEach(img=>{
+  if(img.complete){fitCard(img.closest('.design-card'))}
+  else img.addEventListener('load',()=>fitCard(img.closest('.design-card')),{once:true});
+});
+window.addEventListener('load',fitGallery);
+window.addEventListener('resize',()=>requestAnimationFrame(fitGallery));
+</script>
+<script id="icheal-electric-cards">
+(()=>{
+  if(window.__ichealElectricCardsReady) return;
+  window.__ichealElectricCardsReady = true;
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mediaSelector = '.preview, .image-wrap';
+  const cardSelector = '.folder, .photo-card, .design-card';
+
+  document.querySelectorAll(mediaSelector).forEach((wrap) => {
+    if (wrap.querySelector('.electric-veil')) return;
+    const burst = document.createElement('div');
+    burst.className = 'electric-burst';
+    burst.setAttribute('aria-hidden','true');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'electric-veil');
+    svg.setAttribute('viewBox', '0 0 100 100');
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.innerHTML = '<polyline class="bolt a" points="2,13 12,8 20,15 31,6 42,14 54,7 65,13 77,5 88,12 98,7"></polyline><polyline class="bolt b" points="98,83 88,91 78,84 67,94 56,85 45,93 34,84 22,92 12,85 2,93"></polyline>';
+    wrap.appendChild(burst);
+    wrap.appendChild(svg);
+  });
+
+  function sparkBurst(card, x, y){
+    const count = 8;
+    for(let i = 0; i < count; i++){
+      const p = document.createElement('span');
+      p.className = 'zap-particle';
+      const angle = (Math.PI * 2 * i) / count;
+      const distance = 18 + Math.random() * 26;
+      p.style.left = x + 'px';
+      p.style.top = y + 'px';
+      p.style.setProperty('--dx', (Math.cos(angle) * distance) + 'px');
+      p.style.setProperty('--dy', (Math.sin(angle) * distance) + 'px');
+      card.appendChild(p);
+      setTimeout(() => p.remove(), 720);
+    }
+  }
+
+  document.querySelectorAll('a.folder, .photo-card > a, .design-card > a').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const card = link.closest(cardSelector);
+      if(!card) return;
+      card.classList.remove('is-zapping');
+      void card.offsetWidth;
+      card.classList.add('is-zapping');
+      if(navigator.vibrate) navigator.vibrate(28);
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX || (rect.left + rect.width / 2)) - rect.left;
+      const y = (event.clientY || (rect.top + rect.height / 2)) - rect.top;
+      if(!reduced) sparkBurst(card, x, y);
+      setTimeout(() => card.classList.remove('is-zapping'), 460);
+
+      const href = link.getAttribute('href');
+      const target = (link.getAttribute('target') || '').toLowerCase();
+      const modified = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+      if(target === '_blank' || modified) return;
+      if(event.button && event.button !== 0) return;
+      event.preventDefault();
+      setTimeout(() => { window.location.href = href; }, 210);
+    });
+  });
+})();
+</script>
+
+</body></html>
